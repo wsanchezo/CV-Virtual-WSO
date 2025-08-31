@@ -46,20 +46,18 @@ CV-Virtual-WSO/
    bash
    git clone https://github.com/tu-usuario/CV-Virtual-WSO.git
    cd CV-Virtual-WSO
-   ✨ Próximas Mejoras
-
- Integración con Base de Datos para almacenar más información.
-
+   
+✨ Próximas Mejoras
+  Integración con Base de Datos para almacenar más información.
  Exportar CV en formato PDF dinámico.
-
- Agregar sección de proyectos con demos interactivos.
+  Agregar sección de proyectos con demos interactivos.
 
 👨‍💻 Autor
 
 Walter Sánchez Ome (WSO)
 💼 Ingeniero de Software | 🚀 Apasionado por la tecnología | 🌍 En constante aprendizaje
 
----
+
 
 
 
