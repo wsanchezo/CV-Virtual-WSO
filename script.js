@@ -800,11 +800,11 @@ setTimeout(() => {
 }, 500);
       
       // Pie Chart - Formación Complementaria
-// Script para el gráfico de distribución de tecnologías
-// Configuración del gráfico de pastel
-const ctxPie = document.getElementById('pieChart').getContext('2d');
+      // Script para el gráfico de distribución de tecnologías
+      // Configuración del gráfico de pastel
 
-// Datos basados en tus habilidades técnicas y proyectos
+const ctxPie = document.getElementById('pieChart').getContext('2d');
+     // Datos basados en tus habilidades técnicas y proyectos
 const pieData = {
     labels: [
         '📜 JavaScript',
