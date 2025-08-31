@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walter Sánchez Ome - Ingeniero de Software</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-blue">
+    <div class="container">
+      <!-- Header con información del usuario -->
+      <div class="header">
+        <div>
+          <h1><strong>Walter Sánchez Ome</strong></h1>
+          <p data-lang="job_title">Ingeniero de Software</p>
+        </div>
+        <div class="user-info">
+          <button
+            id="nightModeBtn"
+            class="night-mode-btn"
+            onclick="toggleNightMode()"
+          >
+            🌙 <span data-lang="night_mode">Modo Nocturno</span>
+          </button>
+
+          <div class="theme-selector">
+            <button
+              class="theme-btn theme-blue-btn"
+              onclick="changeTheme('blue')"
+              title="Azul Rey"
+            ></button>
+            <button
+              class="theme-btn theme-green-btn"
+              onclick="changeTheme('green')"
+              title="Verde Bosque"
+            ></button>
+            <button
+              class="theme-btn theme-orange-btn"
+              onclick="changeTheme('orange')"
+              title="Naranja Fuerte"
+            ></button>
+            <button
+              class="theme-btn theme-red-btn"
+              onclick="changeTheme('red')"
+              title="Rojo Fuerte"
+            ></button>
+            <button
+              class="theme-btn theme-yellow-btn"
+              onclick="changeTheme('yellow')"
+              title="Amarillo"
+            ></button>
+            <button
+              class="theme-btn theme-purple-btn"
+              onclick="changeTheme('purple')"
+              title="Morado"
+            ></button>
+          </div>
+          <div class="language-selector">
+            <button class="btn btn-secondary" onclick="changeLanguage('es')">
+              ES
+            </button>
+            <button class="btn btn-secondary" onclick="changeLanguage('en')">
+              EN
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navegación Principal -->
+      <div class="nav-bar">
+        <button
+          class="nav-btn active"
+          onclick="showModule('dashboard'); animateIcon(this, 'spin')"
+        >
+          📊 <span data-lang="dashboard">Dashboard</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="showModule('profile'); animateIcon(this, 'spin')"
+        >
+          👤 <span data-lang="profile">Perfil Profesional</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="showModule('experience'); animateIcon(this, 'spin')"
+        >
+          💼 <span data-lang="experience">Experiencia Laboral</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="showModule('skills'); animateIcon(this, 'spin')"
+        >
+          ⚡ <span data-lang="skills">Habilidades</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="showModule('education'); animateIcon(this, 'spin')"
+        >
+          🎓 <span data-lang="education">Educación</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="showModule('projects'); animateIcon(this, 'spin')"
+        >
+          🚀 <span data-lang="projects">Proyectos</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="showModule('contact'); animateIcon(this, 'spin')"
+        >
+          📞 <span data-lang="contact">Contacto</span>
+        </button>
+      </div>
+
+      <!-- Dashboard Module -->
+      <div id="dashboard" class="module active">
+        <h2
+          style="
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          📊 <span data-lang="dashboard">Dashboard</span>
+        </h2>
+        <div class="stats-grid">
+          <div class="stat-card" style="background: #000000" >
+            <div class="stat-number">2+</div>
+            <div data-lang="experience_years">Años de Experiencia</div>
+          </div>
+          <div class="stat-card"style="background: #000000">
+            <div class="stat-number">15+</div>
+            <div data-lang="projects">Proyectos</div>
+          </div>
+          <div class="stat-card"style="background: #000000" >
+            <div class="stat-number">10+</div>
+            <div data-lang="skills_count">Tecnologías</div>
+          </div>
+          <div class="stat-card"style="background: #000000">
+            <div class="stat-number">4</div>
+            <div data-lang="certifications">Certificaciones</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🚀 <span data-lang="quick_summary">Resumen Profesional</span></h3>
+          <p data-lang="summary_text">
+              Ingeniero de Software con experiencia en desarrollo full-stack,
+              arquitectura de software y sistemas empresariales. Especialista en
+              gestión de proyectos tecnológicos, bases de datos y metodologías
+              ágiles.
+          </p>
+          <div class="experience-card card"style="background: #111827">
+            <h3 data-lang="visual_report">📈 Reporte Visual</h3>
+            <div class="charts-grid">
+              <div class="chart-container">
+                <h4 data-lang="projects_by_category">
+                  📂 Proyectos por Categoría
+                </h4>
+                <div class="experience-card card" style="background: #000000">
+                  <canvas id="barChart"></canvas>
+                </div>
+              </div>
+              <div class="chart-container">
+                <h4 data-lang="tech_distribution">
+                  🛠️ Distribución de Tecnologías
+                </h4>
+                <div class="experience-card card" style="background: #000000">
+                  <canvas id="pieChart"></canvas>
+                </div>
+              </div>
+              <div class="chart-container">
+                <h4 data-lang="professional_growth">
+                  📈 Crecimiento Profesional
+                </h4>
+                <div class="experience-card card" style="background: #000000">
+                  <canvas id="lineChart"></canvas>
+                </div>
+              </div>
+              <div class="chart-container">
+                <h4 data-lang="certifications">🎓 Certificaciones</h4>
+                <div class="experience-card card" style="background: #000000">
+                  <canvas id="doughnutChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         <div class="card"style="background: #111827">
+          <h3>
+            📌<span data-lang="highlighted_experience"
+              >Herramientas Complementarias</span
+            >
+          </h3>
+          <div class="experience-card card"style="background: #000000">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+              width="40"
+              alt="Java"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+              width="40"
+              alt="Python"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+              width="40"
+              alt="JavaScript"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+              width="40"
+              alt="MySQL"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+              width="40"
+              alt="PostgreSQL"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg"
+              width="40"
+              alt="SQL Server"
+            />
+            <!-- Web -->
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+              width="40"
+              alt="HTML5"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+              width="40"
+              alt="CSS3"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+              width="40"
+              alt="React"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+              width="40"
+              alt="Node.js"
+            />
+
+            <!-- Herramientas -->
+
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+              alt="Git"
+              width="40"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+              alt="GitHub"
+              width="40"
+            />
+
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+              width="60"
+              alt="Docker"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+              width="40"
+              alt="VS Code"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg"
+              width="40"
+              alt="Eclipse"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg"
+              width="40"
+              alt="IntelliJ IDEA"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg"
+              width="80"
+              height="50"
+            />
+
+            <!-- Metodologías -->
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+              width="40"
+              alt="Scrum"
+            />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png"
+              width="40"
+              alt="Kanban"
+            />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/888/888879.png"
+              width="40"
+              alt="Extreme Programming"
+            />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/5969/5969044.png"
+              width="40"
+              alt="Lean"
+            />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3222/3222798.png"
+              width="40"
+              alt="DevOps"
+            />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png"
+              width="35"
+              alt="Agile"
+            />
+            <img
+              src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"
+              width="60"
+              alt="AWS"
+            />
+            <img
+              src="https://www.jenkins.io/images/logos/jenkins/jenkins.png"
+              width="30"
+              alt="Jenkins"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg"
+              alt="Linux Logo"
+              width="40"
+            />
+            <img
+              src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg"
+              alt="Postman Logo"
+              width="40"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Virtualbox_logo.png"
+              alt="VirtualBox Logo"
+              width="40"
+            />
+            <img
+              src="https://cdn.worldvectorlogo.com/logos/spring-3.svg"
+              alt="Spring Boot"
+              width="40"
+              height="40"
+            />
+            <img
+              src="https://cdn.worldvectorlogo.com/logos/laravel-2.svg"
+              alt="Laravel"
+              width="40"
+              height="40"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Perfil Profesional Module -->
+ <!-- Perfil Profesional Module -->
+      <div id="profile" class="module">
+        <h2
+          style="
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          👤 <span data-lang="profile">Perfil Profesional</span>
+        </h2>
+
+        <div class="card">
+          <p>
+            Ingeniero de Software con experiencia en desarrollo
+            <strong>full-stack</strong>, arquitectura de software y sistemas
+            empresariales. Especialista en gestión de proyectos tecnológicos,
+            bases de datos y metodologías ágiles, con énfasis en
+            <strong>sistemas distribuidos</strong>,
+            <strong>pruebas de calidad</strong>, <strong>IoT</strong> e
+            <strong>integración continua</strong>. Orientado a la innovación, el
+            liderazgo de equipos y la creación de soluciones tecnológicas que
+            generan valor y eficiencia en las organizaciones.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            🎯 <span data-lang="career_goals">Objetivos Profesionales</span>
+          </h3>
+          <ul>
+            <li data-lang="goal1">
+              Aplicar conocimientos en desarrollo de software empresarial y
+              arquitectura de sistemas
+            </li>
+            <li data-lang="goal2">
+              Contribuir a la transformación digital mediante soluciones
+              innovadoras y escalables
+            </li>
+            <li data-lang="goal3">
+              Desempeñar roles que combinen desarrollo técnico con liderazgo de
+              equipos
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Experiencia Laboral Module -->
+      <div id="experience" class="module">
+        <h2
+          style="
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          💼 <span data-lang="experience">Experiencia Laboral</span>
+        </h2>
+
+        <div class="experience-card card">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+            "
+          >
+            <div style="flex: 1">
+              <h3>COLSUBSIDIO - Caja Colombiana de Subsidio Familiar</h3>
+              <p>
+                <strong>📅 <span data-lang="duration">Duración:</span></strong>
+                <span data-lang="colsubsidio_dates"
+                  >Marzo 2017 - Diciembre 2024</span
+                >
+              </p>
+              <p>
+                <strong>🎯 <span data-lang="position">Cargo:</span></strong>
+                <span data-lang="colsubsidio_position"
+                  >Auxiliar Gestión Base T.I.</span
+                >
+              </p>
+            </div>
+          </div>
+          <div style="margin-top: 15px">
+            <ul>
+              <li data-lang="colsubsidio_resp1">
+                Administración de sistemas de información empresariales y bases
+                de datos corporativas
+              </li>
+              <li data-lang="colsubsidio_resp2">
+                Implementación de mejoras en infraestructura tecnológica
+              </li>
+              <li data-lang="colsubsidio_resp3">
+                Soporte técnico especializado y colaboración en proyectos de
+                transformación digital
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Habilidades Module -->
+      <div id="skills" class="module">
+        <h2
+          style="
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          ⚡ <span data-lang="skills">Habilidades Técnicas</span>
+        </h2>
+
+        <div class="card">
+          <h3>
+            🔧<span data-lang="programming_languages"
+              >Lenguajes de Programación</span
+            >
+          </h3>
+          <div class="experience-card card">
+            <div class="skills-grid">
+              <div class="skill-item"><span>☕</span> Java</div>
+              <div class="skill-item"><span>🐍</span> Python</div>
+              <div class="skill-item"><span>📜</span> JavaScript</div>
+              <div class="skill-item"><span>🗃️</span> SQL</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🌐 <span data-lang="web_development">Desarrollo Web</span></h3>
+          <div class="experience-card card">
+            <div class="skills-grid">
+              <div class="skill-item"><span>🎨</span> HTML5/CSS3</div>
+              <div class="skill-item"><span>⚛️</span> React.js</div>
+              <div class="skill-item"><span>🔌</span> RESTful APIs</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🗄️ <span data-lang="databases">Bases de Datos</span></h3>
+          <div class="experience-card card">
+            <div class="skills-grid">
+              <div class="skill-item"><span>🐬</span> MySQL</div>
+              <div class="skill-item"><span>🐘</span> PostgreSQL</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🛠️ <span data-lang="tools">Herramientas</span></h3>
+          <div class="experience-card card">
+            <div class="skills-grid">
+              <div class="skill-item"><span>📝</span> Git/GitHub</div>
+              <div class="skill-item"><span>🐳</span> Docker</div>
+              <div class="skill-item"><span>💻</span> Visual Studio Code</div>
+              <div class="skill-item"><span>☁️</span> Azure IoT Hub</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📋 <span data-lang="methodologies">Metodologías</span></h3>
+          <div class="experience-card card">
+            <div class="skills-grid">
+              <div class="skill-item"><span>🔄</span> Scrum</div>
+              <div class="skill-item"><span>📋</span> Kanban</div>
+              <div class="skill-item"><span>📊</span> Lean</div>
+              <div class="skill-item"><span>📈</span> PSP/TSP</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Educación Module -->
+      <div id="education" class="module">
+        <h2
+          style="
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          🎓 <span data-lang="education">Educación</span>
+        </h2>
+
+        <div class="education-card card">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+            "
+          >
+            <div style="flex: 1">
+              <h3 data-lang="software_engineering">Ingeniería de Software</h3>
+              <p>
+                <strong
+                  >🏫 <span data-lang="institution">Institución:</span></strong
+                >
+                <span data-lang="polytechnic_uni"
+                  >Institución Universitaria Politécnico Grancolombiano</span
+                >
+              </p>
+              <p>
+                <strong>📅 <span data-lang="date">Fecha:</span></strong>
+                <span data-lang="graduated_june">Graduado Junio 2025</span>
+              </p>
+              <p>
+                <strong>⭐ <span data-lang="gpa">PGA:</span></strong> 4.71/5.0
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="education-card card">
+          <h3>
+            📚
+            <span data-lang="additional_training"
+              >Formación Complementaria</span
+            >
+          </h3>
+
+          <div style="margin-top: 15px">
+            <h4 data-lang="cs_diploma">Diplomado Ciencias de la Computación</h4>
+            <p>
+              <strong
+                >🏫 <span data-lang="institution">Institución:</span></strong
+              >
+              <span data-lang="polytechnic_uni"
+                >Institución Universitaria Politécnico Grancolombiano</span
+              >
+            </p>
+            <p>
+              <strong>📅 <span data-lang="date">Fecha:</span></strong>
+              <span data-lang="months">Octubre 2024</span>
+            </p>
+            <p>
+              <strong>⏱️ <span data-lang="duration">Duración:</span></strong>
+              <span data-lang="cs_duration">100 horas</span>
+            </p>
+          </div>
+
+          <div style="margin-top: 15px">
+            <h4 data-lang="agile_methodologies">
+              Metodologías Ágiles (Scrum, Kanban, Lean)
+            </h4>
+            <p>
+              <strong
+                >🏫 <span data-lang="institution">Institución:</span></strong
+              >
+              <span data-lang="colsubsidio_edu"
+                >COLSUBSIDIO Educación Tecnológica</span
+              >
+            </p>
+            <p>
+              <strong>📅 <span data-lang="date">Fecha:</span></strong>
+              <span data-lang="agile_date">Abril 2025</span>
+            </p>
+            <p>
+              <strong>⏱️ <span data-lang="duration">Duración:</span></strong>
+              <span data-lang="agile_duration">48 horas</span>
+            </p>
+          </div>
+
+          <div style="margin-top: 15px">
+            <h4 data-lang="english_cert">ENGLISH DOT WORKS 1, 2,3, 4</h4>
+            <p>
+              <strong
+                >🏫 <span data-lang="institution">Institución:</span></strong
+              >
+              SENA
+            </p>
+            <p>
+              <strong>📅 <span data-lang="date">Fecha:</span></strong>
+              <span data-lang="english_date">Septiembre 2022</span>
+            </p>
+            <p>
+              <strong>⏱️ <span data-lang="duration">Duración:</span></strong>
+              <span data-lang="english_duration">300 horas</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proyectos Module -->
+      <div id="projects" class="module">
+        <h2
+          style="
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          🚀 <span data-lang="projects">Proyectos</span>
+        </h2>
+
+        <div class="card">
+          <h3 data-lang="project1_title">
+            🏢 Arquitectura Empresarial - Inmobiliaria Los Alpes S.A.
+          </h3>
+          <div class="experience-card card">
+            <p data-lang="project1_description">
+              Desarrollo de modelo arquitectónico completo con
+              análisisAS-IS/TO-BE
+            </p>
+            <p>
+              <strong data-lang="technologies">Tecnologías:</strong>
+              <span data-lang="project1_tech"
+                >Java Enterprise, MySQL, Patrones de Diseño</span
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 data-lang="project2_title">
+            🌐 Sistema Cliente-Servidor Distribuido
+          </h3>
+          <div class="experience-card card">
+            <p data-lang="project2_description">
+              Implementación con sockets Java y base de datos MySQL
+            </p>
+            <p>
+              <strong data-lang="achievements">Logros:</strong>
+              <span data-lang="project2_achievements"
+                >Manejo de 500+ conexiones concurrentes, alta
+                disponibilidad</span
+              >
+            </p>
+            <a
+              data-lang="project2_link_text"
+              href="https://github.com/wsanchezo/Sistema-Cliente-Servidor-Distribuido.git"
+              target="_blank"
+              rel="noopener"
+              >Repositorio GitHub</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 data-lang="project3_title">📡 Plataforma IoT con Azure Hub</h3>
+          <div class="experience-card card">
+            <p data-lang="project3_description">
+              Conectividad de dispositivos móviles, Raspberry Pi y Arduino
+            </p>
+            <p>
+              <strong data-lang="technologies">Tecnologías:</strong>
+              <span data-lang="project3_tech"
+                >IoT, Python, C++, Dashboards en tiempo real</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <h3 data-lang="project6_title">
+            💼🏥 MediGest Pro Sistema Integral de Gestión Médica
+          </h3>
+          <div class="experience-card card">
+            <p data-lang="project6_description">
+              Software para gestionar citas médicas y acceder a la historia
+              clínica, resultados y autorizaciones.
+            </p>
+            <p>
+              <strong data-lang="project6_tech_label">Tecnologías:</strong>
+              <span data-lang="project6_tech"
+                >Aplicación web, formularios clínicos, autenticación,
+                notificaciones</span
+              >
+            </p>
+            <p data-lang="project6_updated">Repositorio: público</p>
+            <a
+              data-lang="project6_link_text"
+              href="https://github.com/wsanchezo/Agile-medicine-Kalho.-GitHub.io.git"
+              target="_blank"
+              rel="noopener"
+              >Repositorio GitHub</a
+            >
+          </div>
+        </div>
+        <div class="card">
+          <h3 data-lang="project7_title">💼 CV-Virtual-WSO</h3>
+          <div class="experience-card card">
+            <p data-lang="project7_description">
+              Currículum interactivo y portfolio personal en formato web.
+            </p>
+            <p>
+              <strong data-lang="project7_tech_label">Tecnologías:</strong>
+              <span data-lang="project7_tech"
+                >HTML, CSS, JavaScript, despliegue en GitHub Pages</span
+              >
+            </p>
+            <p data-lang="project7_updated">Repositorio público</p>
+            <a
+              data-lang="project7_link_text"
+              href="https://github.com/wsanchezo/CV-Virtual-WSO.git"
+              target="_blank"
+              rel="noopener"
+              >Repositorio GitHub</a
+            >
+          </div>
+        </div>
+        <div class="card">
+          <h3 data-lang="project8_title">
+            💼🌐 WCyberium - Página Web Entrega Final
+          </h3>
+          <div class="experience-card card">
+            <p data-lang="project8_description">
+              Proyecto final desarrollado como página web, integrando conceptos
+              de diseño y programación web.
+            </p>
+            <p>
+              <strong data-lang="project8_tech_label">Tecnologías:</strong>
+              <span data-lang="project8_tech"
+                >HTML, CSS, JavaScript, despliegue en GitHub Pages</span
+              >
+            </p>
+            <p data-lang="project8_updated">Repositorio: público</p>
+            <a
+              data-lang="project8_link_text"
+              href="https://github.com/wsanchezo/WCyberium.GitHub.io.git"
+              target="_blank"
+              rel="noopener"
+              >Repositorio GitHub</a
+            >
+          </div>
+        </div>
+        <div class="card">
+          <h3 data-lang="project9_title">💼🔐 Autenticación-2FA</h3>
+          <div class="experience-card card">
+            <p data-lang="project9_description">
+              Sistema con autenticación en dos factores (2FA) mediante TOTP y
+              códigos de respaldo, con interfaz gráfica en Tkinter.
+            </p>
+            <p>
+              <strong data-lang="project9_tech_label">Tecnologías:</strong>
+              <span data-lang="project9_tech"
+                >Python, Tkinter, TOTP, códigos QR, autenticación</span
+              >
+            </p>
+            <p data-lang="project9_updated">Repositorio: público</p>
+            <a
+              data-lang="project9_link_text"
+              href="https://github.com/wsanchezo/-Autenticaci-n-2FA.git"
+              target="_blank"
+              rel="noopener"
+              >Repositorio GitHub</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Contacto Module -->
+      <div id="contact" class="module">
+        <h2
+          style="
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          📞 <span data-lang="contact">Contacto</span>
+        </h2>
+
+        <div class="contact-card card">
+          <h3>
+            📇 <span data-lang="contact_info">Información de Contacto</span>
+          </h3>
+          <div class="contact-info">
+            <div class="contact-item">📍 Bogotá D.C., Colombia</div>
+            <div class="contact-item">✉️ waltersanchezome@gmail.com</div>
+            <div class="contact-item">📞 +57 321 226 7673</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📨 <span data-lang="send_message">Enviar Mensaje</span></h3>
+          <form style="margin-top: 15px">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                margin-bottom: 15px;
+              "
+            >
+              <div>
+                <label for="name"><span data-lang="name">Nombre</span>:</label>
+                <input type="text" id="name" />
+              </div>
+              <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" />
+              </div>
+            </div>
+            <div style="margin-bottom: 15px">
+              <label for="message"
+                ><span data-lang="message">Mensaje</span>:</label
+              >
+              <textarea id="message" rows="4"></textarea>
+            </div>
+            <button type="button" class="btn" onclick="sendMessage()">
+              📤 <span data-lang="send">Enviar</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
